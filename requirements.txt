@@ -1,0 +1,16 @@
+<<<<<<< HEAD
+streamlit
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+=======
+streamlit
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+>>>>>>> 84eb66b1a213e23cd6c26981a3bb9074050cd394
+joblib
