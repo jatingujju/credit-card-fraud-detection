@@ -1,82 +1,56 @@
-# 💳 Credit Card Fraud Detection System
+# 💳 CardGuard AI — Credit Card Fraud Detection System
 
-## 🚀 Overview
+CardGuard AI is a Machine Learning-powered web application that detects fraudulent credit card transactions in real time using advanced classification models.
 
-This project is an end-to-end Machine Learning system to detect fraudulent credit card transactions using classification models and an interactive Streamlit application.
-
----
-
-## 🎯 Problem Statement
-
-Credit card fraud leads to significant financial losses. The objective is to accurately detect fraudulent transactions while minimizing false positives.
+## 🚀 Live Demo
+🔗 https://credit-card-fraud-detection-tueybytqnseqntmjpmmcqb.streamlit.app/
 
 ---
 
-## 🛠️ Solution
+## 📌 Features
 
-* Performed data preprocessing and cleaning
-* Conducted Exploratory Data Analysis (EDA)
-* Built and compared models:
-
-  * Logistic Regression (baseline)
-  * Random Forest (advanced)
-* Evaluated using Precision, Recall, F1-score, ROC-AUC
-* Developed a Streamlit UI for real-time fraud prediction
-
----
-
-## 📊 Model Performance
-
-* Logistic Regression ROC-AUC: ~0.99
-* Random Forest ROC-AUC: ~0.99
+- 🔍 Real-time fraud prediction
+- 📂 Batch prediction using CSV upload
+- 🤖 Multiple ML models:
+  - Logistic Regression
+  - Random Forest
+- 📊 Fraud probability prediction
+- 🎨 Interactive Streamlit UI
+- ⚡ Fast and lightweight deployment
 
 ---
 
-## 📊 Exploratory Data Analysis
+## 🛠️ Technologies Used
 
-### 🔹 Correlation Heatmap
-
-![Heatmap](images/heatmap.png)
-
-### 🔹 Transaction Amount Distribution
-
-![Amount Distribution](images/amount.png)
-
----
-
-## 🌐 Application Interface
-
-![Streamlit App](images/app.png)
+- Python
+- Streamlit
+- Pandas
+- NumPy
+- Scikit-learn
+- Joblib
 
 ---
 
-## 📂 Dataset
+## 📊 Machine Learning Workflow
 
-Dataset is not included due to GitHub size limitations.
-
-Download from:
-https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
-
-After downloading, place it in:
-data/transactions.parquet
+1. Data Collection
+2. Data Preprocessing
+3. Feature Scaling
+4. Model Training
+5. Fraud Prediction
+6. Deployment with Streamlit
 
 ---
 
-## ▶️ How to Run
+## 📁 Project Structure
 
 ```bash
-pip install -r requirements.txt
-streamlit run app.py
-```
-
----
-
-## 🧠 Key Learning
-
-Fraud detection is not just about accuracy — it requires balancing precision, recall, and decision thresholds based on business needs.
-
----
-
-## 👨‍💻 Author
-
-Jatin Gujarathi
+credit-card-fraud-detection/
+│
+├── app.py
+├── requirements.txt
+├── models/
+├── data/
+├── notebooks/
+├── images/
+└── README.md
