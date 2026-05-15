@@ -29,7 +29,7 @@ def load_models():
     return logistic_model, random_forest_model, scaler
 
 
-# Try Loading Models
+# Load Trained Models
 try:
     logistic_model, random_forest_model, scaler = load_models()
     st.success("✅ Models Loaded Successfully")
@@ -89,7 +89,7 @@ with col3:
     v28 = st.number_input("V28", value=0.0)
     amount = st.number_input("Amount", min_value=0.0, value=100.0)
 
-# Prediction Button
+# Predict Single Transaction
 if st.button("🔍 Predict Transaction"):
 
     try:
@@ -100,7 +100,7 @@ if st.button("🔍 Predict Transaction"):
             v26, v27, v28, amount
         ]])
 
-        # Scale Input Data
+        # Scale Data
         scaled_data = scaler.transform(input_data)
 
         # Prediction
@@ -126,7 +126,7 @@ if st.button("🔍 Predict Transaction"):
     except Exception as e:
         st.error(f"❌ Prediction Error: {e}")
 
-# CSV Upload Section
+# Batch Prediction Section
 st.header("📂 Batch Prediction Using CSV")
 
 uploaded_file = st.file_uploader(
@@ -144,14 +144,34 @@ if uploaded_file is not None:
 
         if st.button("🚀 Run Batch Prediction"):
 
+            # Remove unwanted columns
+            columns_to_drop = ['id', 'is_fraud']
+
+            for col in columns_to_drop:
+                if col in data.columns:
+                    data = data.drop(columns=[col])
+
+            # Remove repeated header rows safely
+            if 'Time' in data.columns:
+                data = data[data['Time'] != 'Time']
+
+            # Convert all columns to numeric safely
+            data = data.apply(pd.to_numeric, errors='coerce')
+
+            # Remove invalid rows
+            data = data.dropna()
+
+            # Scale Data
             scaled_batch = scaler.transform(data)
 
+            # Prediction
             if model_choice == "Logistic Regression":
                 predictions = logistic_model.predict(scaled_batch)
 
             else:
                 predictions = random_forest_model.predict(scaled_batch)
 
+            # Add Prediction Column
             data["Prediction"] = predictions
 
             data["Prediction"] = data["Prediction"].map({
@@ -163,7 +183,7 @@ if uploaded_file is not None:
 
             st.dataframe(data.head())
 
-            # Download Predictions
+            # Download Results
             csv = data.to_csv(index=False).encode("utf-8")
 
             st.download_button(
